@@ -2,7 +2,8 @@
 A tool or dasboard site for personal use made by CCabbage-V.
 
 
-#Modules
+# Modules
+---
 # 🇷🇴 Cabbage's Romania Macro Dashboard
 
 A serverless, automated intelligence hub tracking Romanian economic indicators, fuel prices, and socio-political risk. Built entirely on GitHub Pages using Python and GitHub Actions.
