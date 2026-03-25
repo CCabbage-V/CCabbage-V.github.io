@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RO Cost Signals</title>
+<style>
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background-color: #f2f2f7; 
+    color: #1c1c1e; 
+    margin: 0; 
+    padding: 20px; 
+  }
+  .card { 
+    background: #ffffff; 
+    border-radius: 16px; 
+    padding: 16px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+  }
+  h2 { margin-top: 0; font-size: 1.2rem; color: #000; padding-bottom: 12px; border-bottom: 1px solid #e5e5ea; }
+  .metric { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .metric:last-child { margin-bottom: 0; }
+  .label { font-weight: 500; color: #8e8e93; font-size: 0.95rem; }
+  .value-container { text-align: right; }
+  .value { font-weight: 700; color: #000; font-size: 1.1rem; }
+  .trend-up { color: #ff3b30; font-size: 0.8rem; font-weight: 600; display: block; }
+  .trend-down { color: #34c759; font-size: 0.8rem; font-weight: 600; display: block; }
+  .trend-flat { color: #8e8e93; font-size: 0.8rem; font-weight: 600; display: block; }
+  .action { padding: 14px; border-radius: 12px; margin-bottom: 12px; font-size: 0.95rem; line-height: 1.4; }
+  .action-urgent { background-color: #ffeceb; border-left: 5px solid #ff3b30; }
+  .action-delay { background-color: #e8f8ec; border-left: 5px solid #34c759; }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📊 Macro Signals</h2>
+    <div class="metric">
+      <span class="label">EUR/RON (BNR)</span>
+      <div class="value-container">
+        <span class="value">5.095</span>
+        <span class="trend-flat">→ Stable</span>
+      </div>
+    </div>
+    <div class="metric">
+      <span class="label">RO CPI (INSSE)</span>
+      <div class="value-container">
+        <span class="value">9.3%</span>
+        <span class="trend-down">↓ Cooling from 9.6%</span>
+      </div>
+    </div>
+    <div class="metric">
+      <span class="label">EU Inflation (HICP)</span>
+      <div class="value-container">
+        <span class="value">8.3%</span>
+        <span class="trend-down">↓ Cooling from 8.5%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⛽ Fuel Prices (Avg)</h2>
+    <div class="metric">
+      <span class="label">Petrol (Std)</span>
+      <div class="value-container">
+        <span class="value">~9.10 RON</span>
+        <span class="trend-up">↑ +0.58 RON/wk</span>
+      </div>
+    </div>
+    <div class="metric">
+      <span class="label">Diesel (Std)</span>
+      <div class="value-container">
+        <span class="value">~9.80 RON</span>
+        <span class="trend-up">↑ +0.80 RON/wk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💡 Recommendation Panel</h2>
+    <div class="action action-urgent">
+      <strong>⛽ Refill Now:</strong> Fuel prices are spiking rapidly due to global crude costs. Fill your tank immediately to avoid paying over 10 RON for diesel.
+    </div>
+    <div class="action action-delay">
+      <strong>🛒 Delay Loans:</strong> With inflation at 9.3% but cooling, borrowing costs remain high. Delay financed purchases if possible until rates drop.
+    </div>
+  </div>
+
+</body>
+</html>
