@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cabbage's Tools</title>
+<style>
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background-color: #f2f2f7; 
+    color: #1c1c1e; 
+    margin: 0; 
+    padding: 20px; 
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  h1 { 
+    margin: 0; 
+    font-size: 1.8rem; 
+    color: #000; 
+  }
+  p.subtitle {
+    color: #8e8e93;
+    font-size: 0.95rem;
+    margin-top: 5px;
+  }
+  .tools-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .tool-card { 
+    background: #ffffff; 
+    border-radius: 16px; 
+    padding: 20px; 
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+  }
+  .tool-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+  .tool-icon {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .tool-title { 
+    font-weight: 600; 
+    font-size: 1.1rem; 
+    margin: 0 0 5px 0;
+  }
+  .tool-desc { 
+    color: #8e8e93; 
+    font-size: 0.9rem; 
+    margin: 0;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Cabbage's Tools</h1>
+    <p class="subtitle">Personal Dashboards & Automations</p>
+  </header>
+
+  <div class="tools-grid">
+    <a href="dashboard.html" class="tool-card">
+      <span class="tool-icon">🇷🇴</span>
+      <h2 class="tool-title">Romania Cost Dashboard</h2>
+      <p class="tool-desc">Live tracker for EUR/RON BNR rates, CPI inflation, and current fuel prices.</p>
+    </a>
+
+    <a href="#" class="tool-card" style="opacity: 0.6;">
+      <span class="tool-icon">🛠️</span>
+      <h2 class="tool-title">Coming Soon</h2>
+      <p class="tool-desc">More automations and tools will be added here.</p>
+    </a>
+  </div>
+
+</body>
+</html>
