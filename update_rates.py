@@ -21,7 +21,7 @@ else:
 
 # 3. Read your dashboard HTML file
 # Note: If you named your file something other than 'index.html', change it here!
-html_filename = 'index.html'
+html_filename = 'dashboard.html'
 
 with open(html_filename, 'r', encoding='utf-8') as file:
     html_content = file.read()
