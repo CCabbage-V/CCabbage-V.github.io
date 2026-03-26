@@ -1,9 +1,28 @@
 {
-  "currency": [],
-  "fuel": [],
-  "macro": [],
+  "currency": [
+    {
+      "date": "2026-03-26",
+      "eur_ron": 5.0952,
+      "usd_ron": 4.6821,
+      "gold_gram": 321.45
+    }
+  ],
+  "fuel": [
+    {
+      "date": "2026-03-26",
+      "petrol": 7.15,
+      "diesel": 7.32
+    }
+  ],
+  "macro": [
+    {
+      "date": "2026-03-26",
+      "cpi_ro": 9.3,
+      "hicp_eu": 8.3
+    }
+  ],
   "metadata": {
-    "last_updated": null,
-    "status": "initial"
+    "last_updated": "2026-03-26T09:57:51.034310",
+    "status": "stable"
   }
 }
