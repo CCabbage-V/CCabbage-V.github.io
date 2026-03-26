@@ -1,4 +1,4 @@
-name: Update BNR Exchange Rate
+name: Update Dashboard Data
 
 on:
   schedule:
@@ -23,12 +23,12 @@ jobs:
           python-version: '3.x'
 
       - name: Run Update Script
-        run: python update_rates.py
+        run: python build_dashboard.py
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add dashboard.html
-          # Only commit if there are actual changes (prevents errors if the rate stayed exactly the same)
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-updated BNR exchange rate" && git push)
+          git add data/history.json
+          # Only commit if there are actual changes (prevents errors if the data stayed exactly the same)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-updated dashboard data" && git push)
