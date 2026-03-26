@@ -35,27 +35,29 @@
 </head>
 <body>
 
+  <div id="status-msg" style="color: red; padding: 10px; display: none;"></div>
+
   <div class="card">
     <h2>📊 Macro Signals</h2>
     <div class="metric">
       <span class="label">EUR/RON (BNR)</span>
       <div class="value-container">
-        <span class="value">5.0952</span>
-        <span class="trend-flat">→ Stable</span>
+        <span id="eur-value" class="value">---</span>
+        <span id="eur-trend" class="trend-flat">Loading...</span>
       </div>
     </div>
     <div class="metric">
       <span class="label">RO CPI (INSSE)</span>
       <div class="value-container">
-        <span class="value">9.3%</span>
-        <span class="trend-down">↓ Cooling from 9.6%</span>
+        <span id="cpi-value" class="value">---</span>
+        <span id="cpi-trend" class="trend-flat">Loading...</span>
       </div>
     </div>
     <div class="metric">
       <span class="label">EU Inflation (HICP)</span>
       <div class="value-container">
-        <span class="value">8.3%</span>
-        <span class="trend-down">↓ Cooling from 8.5%</span>
+        <span id="hicp-value" class="value">---</span>
+        <span id="hicp-trend" class="trend-flat">Loading...</span>
       </div>
     </div>
   </div>
@@ -65,15 +67,15 @@
     <div class="metric">
       <span class="label">Petrol (Std)</span>
       <div class="value-container">
-        <span class="value">~9.10 RON</span>
-        <span class="trend-up">↑ +0.58 RON/wk</span>
+        <span id="petrol-value" class="value">---</span>
+        <span id="petrol-trend" class="trend-flat">Loading...</span>
       </div>
     </div>
     <div class="metric">
       <span class="label">Diesel (Std)</span>
       <div class="value-container">
-        <span class="value">~9.80 RON</span>
-        <span class="trend-up">↑ +0.80 RON/wk</span>
+        <span id="diesel-value" class="value">---</span>
+        <span id="diesel-trend" class="trend-flat">Loading...</span>
       </div>
     </div>
   </div>
@@ -88,5 +90,83 @@
     </div>
   </div>
 
+  <div style="font-size: 0.8rem; color: #8e8e93; margin-top: 10px;">Last Updated: <span id="last-updated">---</span></div>
+
+  <script>
+    function updateTrend(id, current, prev, format = (v) => v) {
+      const el = document.getElementById(id);
+      if (!prev) {
+        el.textContent = '→ Initial';
+        el.className = 'trend-flat';
+        return;
+      }
+      const diff = current - prev;
+      if (diff > 0) {
+        el.textContent = `↑ Rising (+${format(diff)})`;
+        el.className = 'trend-up';
+      } else if (diff < 0) {
+        el.textContent = `↓ Falling (${format(diff)})`;
+        el.className = 'trend-down';
+      } else {
+        el.textContent = '→ Stable';
+        el.className = 'trend-flat';
+      }
+    }
+
+    async function loadData() {
+      const statusEl = document.getElementById('status-msg');
+      try {
+        const res = await fetch('data/history.json');
+        if (!res.ok) throw new Error('Fetch failed');
+        const data = await res.json();
+        
+        // Metadata & Staleness
+        const lastUpdated = new Date(data.metadata.last_updated);
+        document.getElementById('last-updated').textContent = lastUpdated.toLocaleString();
+        const hoursOld = (new Date() - lastUpdated) / 36e5;
+        if (hoursOld > 48) {
+          statusEl.textContent = '⚠️ Data is more than 48 hours old.';
+          statusEl.style.display = 'block';
+        }
+
+        // Currency
+        const cur = data.currency;
+        if (cur.length > 0) {
+          const latest = cur[cur.length - 1];
+          const prev = cur[cur.length - 2];
+          document.getElementById('eur-value').textContent = latest.eur_ron.toFixed(4);
+          updateTrend('eur-trend', latest.eur_ron, prev?.eur_ron, (v) => v.toFixed(4));
+        }
+
+        // Fuel
+        const fuel = data.fuel;
+        if (fuel.length > 0) {
+          const latest = fuel[fuel.length - 1];
+          const prev = fuel[fuel.length - 2];
+          document.getElementById('petrol-value').textContent = `~${latest.petrol.toFixed(2)} RON`;
+          updateTrend('petrol-trend', latest.petrol, prev?.petrol, (v) => v.toFixed(2));
+          document.getElementById('diesel-value').textContent = `~${latest.diesel.toFixed(2)} RON`;
+          updateTrend('diesel-trend', latest.diesel, prev?.diesel, (v) => v.toFixed(2));
+        }
+
+        // Macro
+        const macro = data.macro;
+        if (macro.length > 0) {
+          const latest = macro[macro.length - 1];
+          const prev = macro[macro.length - 2];
+          document.getElementById('cpi-value').textContent = `${latest.cpi_ro}%`;
+          updateTrend('cpi-trend', latest.cpi_ro, prev?.cpi_ro, (v) => v.toFixed(1) + '%');
+          document.getElementById('hicp-value').textContent = `${latest.hicp_eu}%`;
+          updateTrend('hicp-trend', latest.hicp_eu, prev?.hicp_eu, (v) => v.toFixed(1) + '%');
+        }
+
+      } catch (err) {
+        statusEl.textContent = '❌ Data Offline: Could not load signals.';
+        statusEl.style.display = 'block';
+        console.error(err);
+      }
+    }
+    loadData();
+  </script>
 </body>
 </html>
