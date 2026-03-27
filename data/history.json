@@ -5,11 +5,22 @@
       "eur_ron": 5.0952,
       "usd_ron": 4.6821,
       "gold_gram": 321.45
+    },
+    {
+      "date": "2026-03-27",
+      "eur_ron": 5.0991,
+      "usd_ron": 4.6821,
+      "gold_gram": 321.45
     }
   ],
   "fuel": [
     {
       "date": "2026-03-26",
+      "petrol": 7.15,
+      "diesel": 7.32
+    },
+    {
+      "date": "2026-03-27",
       "petrol": 7.15,
       "diesel": 7.32
     }
@@ -19,10 +30,15 @@
       "date": "2026-03-26",
       "cpi_ro": 9.3,
       "hicp_eu": 8.3
+    },
+    {
+      "date": "2026-03-27",
+      "cpi_ro": 9.3,
+      "hicp_eu": 8.3
     }
   ],
   "metadata": {
-    "last_updated": "2026-03-26T12:08:43.023829",
+    "last_updated": "2026-03-27T12:04:51.639176",
     "status": "stable"
   }
 }
